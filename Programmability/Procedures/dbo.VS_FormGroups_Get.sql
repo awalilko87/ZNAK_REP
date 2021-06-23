@@ -1,0 +1,12 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[VS_FormGroups_Get]
+WITH ENCRYPTION
+AS
+
+    SELECT
+        GroupID, ParentID, GroupDesc
+    FROM VS_FormGroups
+GO

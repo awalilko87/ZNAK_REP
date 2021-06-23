@@ -1,0 +1,10 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[SYUsers_GetUserName](@UserID nvarchar(30))
+WITH ENCRYPTION
+AS
+	SELECT UserName FROM SYUsers WHERE UserID = @UserID
+	
+GO

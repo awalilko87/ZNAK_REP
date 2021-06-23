@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[AllowedCharsToSAP] (
+  [ACHAR] [nchar](1) COLLATE Latin1_General_BIN NOT NULL,
+  PRIMARY KEY CLUSTERED ([ACHAR])
+)
+ON [PRIMARY]
+GO

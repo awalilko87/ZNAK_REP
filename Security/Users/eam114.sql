@@ -1,0 +1,3 @@
+﻿CREATE USER [eam114]
+  WITHOUT LOGIN
+GO

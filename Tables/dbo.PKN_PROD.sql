@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[PKN_PROD] (
+  [name] [nvarchar](255) NULL,
+  [type] [nvarchar](255) NULL,
+  [type_desc] [nvarchar](255) NULL,
+  [chksum] [float] NULL,
+  [create_date] [nvarchar](255) NULL,
+  [modify_date] [nvarchar](255) NULL,
+  [COUNT] [float] NULL
+)
+ON [PRIMARY]
+GO

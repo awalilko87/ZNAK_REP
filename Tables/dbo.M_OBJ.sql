@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[M_OBJ] (
+  [ROWGUID] [uniqueidentifier] NOT NULL,
+  [ROWID] [int] NULL,
+  [SIGNEDEXISTS] [int] NULL,
+  [CREDATE] [datetime] NULL,
+  CONSTRAINT [PK_M_OBJ] PRIMARY KEY CLUSTERED ([ROWGUID])
+)
+ON [PRIMARY]
+GO

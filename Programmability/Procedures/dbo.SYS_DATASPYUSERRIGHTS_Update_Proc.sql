@@ -1,0 +1,31 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[SYS_DATASPYUSERRIGHTS_Update_Proc](   
+    @USERID nvarchar(30),
+    @DS_PRIV bit = NULL,   
+    @DS_PUB bit = NULL,
+    @DS_GR bit = NULL,
+    @DS_SITE bit = NULL,  
+    @DS_DEP bit = NULL
+)
+WITH ENCRYPTION
+AS
+BEGIN
+IF NOT EXISTS (SELECT * FROM VS_DataSpyUserRights WHERE [UserID] = @USERID)
+	BEGIN
+	INSERT INTO VS_DataSpyUserRights(
+		[DS_DEP], [DS_GR],[DS_PRIV], [DS_PUB], [DS_SITE], [UserID])
+	VALUES (
+		@DS_DEP, @DS_GR, @DS_PRIV, @DS_PUB, @DS_SITE, @USERID)
+	END 
+ELSE 
+	BEGIN 
+	UPDATE VS_DataSpyUserRights SET
+		[DS_DEP] = @DS_DEP, [DS_GR] = @DS_GR, [DS_PRIV] = @DS_PRIV, [DS_PUB] = @DS_PUB, [DS_SITE] = @DS_SITE
+		WHERE [UserID] = @USERID
+	END
+END
+
+
+GO

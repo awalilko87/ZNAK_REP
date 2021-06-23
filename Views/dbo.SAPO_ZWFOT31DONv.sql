@@ -1,0 +1,19 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+create view [dbo].[SAPO_ZWFOT31DONv]
+as
+select 
+	LP  = isnull(OT31DON_LP,''),
+	BUKRS = OT31DON_BUKRS,
+	ANLN1 = isnull(OT31DON_ANLN1,''),
+	ANLN2 = isnull(OT31DON_ANLN2,''),
+	OT31DON_ROWID,
+	OT31DON_ZMT_ROWID,
+	OT31DON_OT31ID
+from dbo.SAPO_ZWFOT31DON (nolock) 
+
+
+
+
+
+GO

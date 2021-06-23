@@ -1,0 +1,13 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+CREATE procedure [dbo].[SYGetItemsContexMenu](
+@_FID nvarchar(30),
+@_PARENT nvarchar(30)
+
+)
+as
+begin	
+	SELECT isnull([ROWID],0) as [ROWID],isnull([PARENTID],0) as [PARENTID],[FID],[MENUPARENT],[ITEMCAPTION],[SECTION],[COMMAND],[CALLMODE],[CONTROLTYPE],[IMGURL],isnull([ORDERINDEX],0) as [ORDERINDEX] FROM [dbo].[SYContextMenu] WHERE [FID] = @_FID AND [MENUPARENT] like isnull(@_PARENT,'%') ORDER BY [ORDERINDEX] ASC
+end
+GO

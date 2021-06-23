@@ -1,0 +1,22 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[SAPO_ZWFOT41LNv]
+as
+
+select 
+	[BUKRS] = OT41LN_BUKRS, 
+	[ANLN1] = isnull(OT41LN_ANLN1,''), 
+	[KOSTL] =  isnull(OT41LN_KOSTL,''),
+	[GDLGRP] = OT41LN_GDLGRP, 
+	[UZASA] = OT41LN_UZASA,  
+	[MENGE] =  isnull(OT41LN_MENGE,0), 
+ 
+	OT41LN_ROWID,
+	OT41LN_ZMT_ROWID,
+	OT41LN_OT41ID 
+from dbo.SAPO_ZWFOT41LN (nolock) 
+ 	join dbo.ZWFOTLN (nolock) on OTL_ROWID = OT41LN_ZMT_ROWID
+where
+	OTL_NOTUSED = 0
+	  
+GO

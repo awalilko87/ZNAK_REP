@@ -1,0 +1,14 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+create view [dbo].[COSTCENTERv]
+as
+select     
+  CCT_ROWID
+, CCT_CODE
+, CCT_ORG
+, CCT_DESC
+, CCT_NOTUSED
+from dbo.COSTCENTER (nolock)
+
+ 
+GO

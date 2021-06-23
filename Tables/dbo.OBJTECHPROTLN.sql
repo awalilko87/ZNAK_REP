@@ -1,0 +1,101 @@
+﻿CREATE TABLE [dbo].[OBJTECHPROTLN] (
+  [POL_ROWID] [int] IDENTITY,
+  [POL_POTID] [int] NOT NULL,
+  [POL_CODE] [nvarchar](30) NOT NULL,
+  [POL_ORG] [nvarchar](30) NULL,
+  [POL_DESC] [nvarchar](150) NULL,
+  [POL_NOTE] [ntext] NULL,
+  [POL_DATE] [datetime] NULL,
+  [POL_STATUS] [nvarchar](30) NULL,
+  [POL_TYPE] [nvarchar](30) NULL,
+  [POL_TYPE2] [nvarchar](30) NULL,
+  [POL_TYPE3] [nvarchar](30) NULL,
+  [POL_RSTATUS] [int] NULL,
+  [POL_CREUSER] [nvarchar](30) NULL,
+  [POL_CREDATE] [datetime] NULL,
+  [POL_UPDUSER] [nvarchar](30) NULL,
+  [POL_UPDDATE] [datetime] NULL,
+  [POL_NOTUSED] [int] NULL,
+  [POL_ID] [nvarchar](50) NULL CONSTRAINT [DF_OBJTECHPROTLN__ID] DEFAULT (CONVERT([nvarchar](50),newid(),(0))),
+  [POL_TXT01] [nvarchar](30) NULL,
+  [POL_TXT02] [nvarchar](30) NULL,
+  [POL_TXT03] [nvarchar](30) NULL,
+  [POL_TXT04] [nvarchar](30) NULL,
+  [POL_TXT05] [nvarchar](30) NULL,
+  [POL_TXT06] [nvarchar](80) NULL,
+  [POL_TXT07] [nvarchar](80) NULL,
+  [POL_TXT08] [nvarchar](255) NULL,
+  [POL_TXT09] [nvarchar](255) NULL,
+  [POL_NTX01] [numeric](24, 6) NULL,
+  [POL_NTX02] [numeric](24, 6) NULL,
+  [POL_NTX03] [numeric](24, 6) NULL,
+  [POL_NTX04] [numeric](24, 6) NULL,
+  [POL_NTX05] [numeric](24, 6) NULL,
+  [POL_COM01] [ntext] NULL,
+  [POL_COM02] [ntext] NULL,
+  [POL_DTX01] [datetime] NULL,
+  [POL_DTX02] [datetime] NULL,
+  [POL_DTX03] [datetime] NULL,
+  [POL_DTX04] [datetime] NULL,
+  [POL_DTX05] [datetime] NULL,
+  [POL_OBJID] [int] NULL,
+  [POL_OLDQTY] [numeric](30, 6) NULL,
+  [POL_NEWQTY] [numeric](30, 6) NULL,
+  [POL_PRICE] [numeric](30, 6) NULL,
+  [POL_PARTIAL] [numeric](8, 2) NULL,
+  [POL_TO_STNID] [int] NULL,
+  [POL_OT33ID] [int] NULL,
+  [POL_OT31ID] [int] NULL,
+  [POL_OT42ID] [int] NULL,
+  [POL_OT41ID] [int] NULL,
+  [POL_OT32ID] [int] NULL,
+  [POL_COM03] [ntext] NULL,
+  [POL_PS_ACCEPT] [int] NULL,
+  [POL_PS_COMMENT] [nvarchar](max) NULL,
+  [POL_BIZ_DEC] [int] NULL,
+  [POL_ADHOC] [int] NULL,
+  [POL_LIKW_TYPE] [int] NULL,
+  [POL_LIKW_ADHOC] [int] NULL,
+  [POL_TECHDEC_TYPE] [int] NULL,
+  [POL_WIEK] [nvarchar](30) NULL,
+  [POL_PRZEBIEG] [nvarchar](30) NULL,
+  [POL_TECHDEC_DESC] [nvarchar](max) NULL,
+  [POL_ATTACH] [nvarchar](max) NULL,
+  [POL_UMO_WART] [numeric](26, 8) NULL,
+  [POL_MIN_ODSP] [numeric](26, 8) NULL,
+  [POL_WART_ODSP] [numeric](26, 8) NULL,
+  [POL_ZARZ_BIZ] [int] NULL,
+  CONSTRAINT [PK_OBJTECHPROTLN] PRIMARY KEY CLUSTERED ([POL_ROWID])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE INDEX [E2IDX_POL01]
+  ON [dbo].[OBJTECHPROTLN] ([POL_POTID], [POL_STATUS])
+  ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_OBJ] FOREIGN KEY ([POL_OBJID]) REFERENCES [dbo].[OBJ] ([OBJ_ROWID])
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_OBJTECHPROT] FOREIGN KEY ([POL_POTID]) REFERENCES [dbo].[OBJTECHPROT] ([POT_ROWID])
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_ORG] FOREIGN KEY ([POL_ORG]) REFERENCES [dbo].[ORG] ([ORG_CODE])
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_ZWFOT31] FOREIGN KEY ([POL_OT31ID]) REFERENCES [dbo].[ZWFOT] ([OT_ROWID])
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_ZWFOT32] FOREIGN KEY ([POL_OT32ID]) REFERENCES [dbo].[ZWFOT] ([OT_ROWID])
+GO
+
+ALTER TABLE [dbo].[OBJTECHPROTLN]
+  ADD CONSTRAINT [FK_OBJTECHPROTLN_ZWFOT41] FOREIGN KEY ([POL_OT41ID]) REFERENCES [dbo].[ZWFOT] ([OT_ROWID])
+GO

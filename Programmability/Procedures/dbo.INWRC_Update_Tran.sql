@@ -1,0 +1,146 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE procedure [dbo].[INWRC_Update_Tran](    
+ @p_FormID nvarchar(50),    
+ @p_ID nvarchar(50),    
+ @p_ROWID int,    
+ @p_CODE nvarchar(30),    
+ @p_ORG nvarchar(30),    
+ @p_DESC nvarchar(80),    
+ @p_NOTE ntext,    
+ @p_DATE datetime,    
+ @p_STATUS nvarchar(30),    
+ @p_STATUS_old nvarchar(30),    
+ @p_TYPE nvarchar(30),    
+ @p_TYPE2 nvarchar(30),    
+ @p_TYPE3 nvarchar(30),    
+ @p_NOTUSED int,    
+ @p_TXT01 nvarchar(30),    
+ @p_TXT02 nvarchar(30),    
+ @p_TXT03 nvarchar(30),    
+ @p_TXT04 nvarchar(30),    
+ @p_TXT05 nvarchar(30),    
+ @p_TXT06 nvarchar(80),    
+ @p_TXT07 nvarchar(80),    
+ @p_TXT08 nvarchar(255),    
+ @p_TXT09 nvarchar(255),    
+ @p_NTX01 numeric(24,6),    
+ @p_NTX02 numeric(24,6),    
+ @p_NTX03 numeric(24,6),    
+ @p_NTX04 numeric(24,6),    
+ @p_NTX05 numeric(24,6),    
+ @p_COM01 ntext,    
+ @p_COM02 ntext,    
+ @p_DTX01 datetime,    
+ @p_DTX02 datetime,    
+ @p_DTX03 datetime,    
+ @p_DTX04 datetime,    
+ @p_DTX05 datetime,    
+ @p_RESPON nvarchar(30),    
+ @p_MAG nvarchar(80),    
+ @p_AST smallint = NULL,    
+ @p_CCD nvarchar(30),    
+ @p_STNID int,  
+ @p_SIN_OS_MAT_ODP nvarchar(30),  
+ @p_SIN_WG_STAN_DZIEN datetime,  
+ @p_SIN_DOD_INDENTY nvarchar(30),
+ @p_SIN_SPIS_START datetime,
+ @p_SIN_SPIS_END datetime,    
+ @p_SIN_DEVICE_USER nvarchar(30), 
+ @p_UserID nvarchar(30),     
+ @p_apperrortext nvarchar(4000) = null output,
+ @p_SIN_COMMITTEE_MEMBER_1 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_2 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_3 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_4 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_5 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_6 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_7 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_8 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_9 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_10 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_11 nvarchar(80),
+ @p_SIN_COMMITTEE_MEMBER_12 nvarchar(80)       
+)    
+as    
+begin    
+  declare @v_errorid int    
+  declare @v_errortext nvarchar(4000)     
+  select @v_errorid = 0    
+  select @v_errortext = null    
+    
+  begin transaction    
+    exec @v_errorid = dbo.INWRC_Update_Proc     
+  @p_FormID,    
+  @p_ID,    
+  @p_ROWID,    
+  @p_CODE,    
+  @p_ORG,    
+  @p_DESC,    
+  @p_NOTE,    
+  @p_DATE,    
+  @p_STATUS,    
+  @p_STATUS_old,    
+  @p_TYPE,    
+  @p_TYPE2,    
+  @p_TYPE3,    
+  @p_NOTUSED,    
+  @p_TXT01,    
+  @p_TXT02,    
+  @p_TXT03,    
+  @p_TXT04,    
+  @p_TXT05,    
+  @p_TXT06,    
+  @p_TXT07,    
+  @p_TXT08,    
+  @p_TXT09,    
+  @p_NTX01,    
+  @p_NTX02,    
+  @p_NTX03,    
+  @p_NTX04,    
+  @p_NTX05,    
+  @p_COM01,    
+  @p_COM02,    
+  @p_DTX01,    
+  @p_DTX02,    
+  @p_DTX03,    
+  @p_DTX04,    
+  @p_DTX05,    
+  @p_RESPON,    
+  @p_MAG,    
+  @p_AST,    
+  @p_CCD,    
+  @p_STNID,  
+  @p_SIN_OS_MAT_ODP,  
+  @p_SIN_WG_STAN_DZIEN,  
+  @p_SIN_DOD_INDENTY, 
+  @p_SIN_SPIS_START,
+  @p_SIN_SPIS_END ,  
+  @p_SIN_DEVICE_USER ,
+  @p_UserID,    
+  @p_apperrortext output,
+  @p_SIN_COMMITTEE_MEMBER_1,
+  @p_SIN_COMMITTEE_MEMBER_2,
+  @p_SIN_COMMITTEE_MEMBER_3,
+  @p_SIN_COMMITTEE_MEMBER_4,
+  @p_SIN_COMMITTEE_MEMBER_5,
+  @p_SIN_COMMITTEE_MEMBER_6,
+  @p_SIN_COMMITTEE_MEMBER_7,
+  @p_SIN_COMMITTEE_MEMBER_8,
+  @p_SIN_COMMITTEE_MEMBER_9,
+  @p_SIN_COMMITTEE_MEMBER_10,
+  @p_SIN_COMMITTEE_MEMBER_11,
+  @p_SIN_COMMITTEE_MEMBER_12      
+  if @v_errorid = 0    
+  begin    
+    commit transaction    
+    return 0    
+  end    
+  else    
+  begin    
+    rollback transaction    
+    return 1    
+  end    
+end    
+    
+GO

@@ -1,0 +1,18 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[SAPO_ZWFOT41v]
+as
+select 
+		[KROK] = s.OT41_KROK,
+		[BUKRS] = s.OT41_BUKRS,
+		[WYST_SAPUSER] = right (OT_CODE,12),
+		[WYST_NAME] = s.OT41_IMIE_NAZWISKO,
+		s.[OT41_ROWID],
+		s.[OT41_IF_STATUS],
+		[DOC_NUM] = OT41_IF_EQUNR,
+		[DOC_YEAR] = OT41_IF_YEAR,
+		[AKCJA] = OT41_IF_AKCJA,
+		[GUID] = OT_ID
+	from dbo.SAPO_ZWFOT41 s (nolock)
+	inner join dbo.ZWFOT on OT_ROWID = OT41_ZMT_ROWID
+GO

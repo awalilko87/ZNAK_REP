@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[_OBJ_obj001] (
+  [OBJ_ROWID] [int] NOT NULL
+)
+ON [PRIMARY]
+GO

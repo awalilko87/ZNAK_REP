@@ -1,0 +1,12 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[VS_FormRights_Get]
+WITH ENCRYPTION
+AS
+
+    SELECT
+        UserID, FormID
+    FROM VS_FormRights
+GO

@@ -1,0 +1,207 @@
+﻿CREATE TABLE [dbo].[VS_Forms] (
+  [FormID] [nvarchar](50) NOT NULL,
+  [QueryStringGridFieldID] [nvarchar](250) NULL,
+  [QueryStringFieldID] [nvarchar](250) NULL,
+  [QueryStringFieldUserID] [nvarchar](250) NULL,
+  [Title] [nvarchar](500) NULL,
+  [SQLSelect] [nvarchar](max) NULL,
+  [SQLGridSelect] [nvarchar](max) NULL,
+  [SQLUpdate] [nvarchar](max) NULL,
+  [SQLDelete] [nvarchar](max) NULL,
+  [PopupReturn] [nvarchar](200) NULL,
+  [GridHeight] [int] NULL,
+  [GridWidth] [int] NULL,
+  [EditAreaWidth] [int] NULL,
+  [EditAreaHeight] [int] NULL,
+  [GridHeaderHeight] [int] NULL,
+  [TableName] [nvarchar](250) NULL,
+  [TablePrefix] [nvarchar](10) NULL,
+  [SQLTreeSelect] [nvarchar](max) NULL,
+  [ButtonTextNew] [nvarchar](150) NULL,
+  [ButtonTextDelete] [nvarchar](150) NULL,
+  [ButtonTextSave] [nvarchar](150) NULL,
+  [FieldTreeDescription] [nvarchar](150) NULL,
+  [FieldTreeID] [nvarchar](150) NULL,
+  [FieldTreeParentID] [nvarchar](150) NULL,
+  [FormDescription] [nvarchar](150) NULL,
+  [PreLoadDefault] [nvarchar](max) NULL,
+  [AdminWhere] [nvarchar](50) NULL,
+  [UserWhere] [nvarchar](50) NULL,
+  [PageSize] [int] NULL CONSTRAINT [DF_VS_Forms_PageSize] DEFAULT (0),
+  [AddWhere] [nvarchar](2000) NULL,
+  [RegisterVariable] [nvarchar](2000) NULL,
+  [UpdateObject] [nvarchar](50) NULL,
+  [LangID] [nvarchar](10) NULL,
+  [AltSavePrompt] [nvarchar](100) NULL,
+  [AltRequirePrompt] [nvarchar](100) NULL,
+  [AltRecCountPrompt] [nvarchar](100) NULL,
+  [AltPageOfCounter] [nvarchar](100) NULL,
+  [ObjType] [nvarchar](10) NULL,
+  [ShowTLine] [bit] NULL,
+  [TLGroupWidth] [int] NULL,
+  [RowHeight] [int] NULL,
+  [RemHTMLTag] [bit] NULL,
+  [MultiSelect] [bit] NULL,
+  [AddNewIfEmpty] [bit] NULL,
+  [StartupCmd] [nvarchar](400) NULL,
+  [NoSOAW] [bit] NULL,
+  [NoSSAW] [bit] NULL,
+  [AllowQuickFilter] [bit] NULL,
+  [TreeWidth] [int] NULL,
+  [TreeHeight] [int] NULL,
+  [CustOrder] [nvarchar](150) NULL,
+  [TreeNullValue] [nvarchar](50) NULL,
+  [LGT] [bit] NULL,
+  [pHeight] [int] NULL,
+  [pWidth] [int] NULL,
+  [Child] [nvarchar](50) NULL,
+  [DBTab] [int] NULL,
+  [QSVariable] [nvarchar](2000) NULL,
+  [HideErr] [bit] NULL,
+  [SectionName] [nvarchar](1000) NULL,
+  [AutoPageOff] [bit] NULL,
+  [p2] [nvarchar](50) NULL,
+  [b1] [bit] NULL,
+  [b2] [bit] NULL,
+  [ToTrans] [bit] NULL,
+  [HideTitle] [bit] NULL,
+  [DefFField] [nvarchar](50) NULL,
+  [DynamicTitle] [bit] NULL,
+  [AllowEditGrid] [bit] NULL,
+  [EditDataspy] [bit] NULL,
+  [Customize] [bit] NULL,
+  [p1] [nvarchar](4000) NULL,
+  [CondFormatGrid] [nvarchar](4000) NULL,
+  [TryCatchSQL] [bit] NULL,
+  [EnableSystemTran] [bit] NULL,
+  [MultiOrg] [bit] NULL,
+  [Class] [nvarchar](50) NULL,
+  [LastUpdate] [datetime] NULL,
+  [UpdateInfo] [nvarchar](255) NULL,
+  [CalHeight] [int] NULL,
+  [CalWidth] [int] NULL,
+  [CalStartDateField] [nvarchar](255) NULL,
+  [CalEndDateField] [nvarchar](255) NULL,
+  [CalEventNameField] [nvarchar](255) NULL,
+  [CalEventDescField] [nvarchar](255) NULL,
+  [CalEventIDField] [nvarchar](255) NULL,
+  [CalTypeField] [nvarchar](255) NULL,
+  [CalBGColorField] [nvarchar](255) NULL,
+  [CalFontColorField] [nvarchar](255) NULL,
+  [CalSQLFD] [nvarchar](255) NULL,
+  [CalMType] [nvarchar](255) NULL,
+  [CalShowEventEndTime] [bit] NULL,
+  [RefreshGridAfterBtnClick] [bit] NULL,
+  [MultiSelectRefresh] [bit] NULL,
+  [SQLProc] [nvarchar](max) NULL,
+  [IsVirtualTable] [bit] NULL,
+  [InDebug] [bit] NULL,
+  [ShowSaveButton] [bit] NULL,
+  [ShowDeleteButton] [bit] NULL,
+  [ShowNewButton] [bit] NULL,
+  [ShowGrid] [bit] NULL,
+  [ShowTree] [bit] NULL,
+  [ShowVerticalTree] [bit] NULL,
+  [GTAutoSize] [bit] NULL,
+  [AllowExcelExport] [bit] NULL,
+  [NoOverrideDefaulByLink] [bit] NULL,
+  [AllowSorting] [bit] NULL,
+  [AllowPagging] [bit] NULL,
+  [ShowFilter] [bit] NULL,
+  [ShowDataSpy] [bit] NULL,
+  [DisableSGWhere] [bit] NULL,
+  [DisableSOWhere] [bit] NULL,
+  [ShowCal] [bit] NULL,
+  [CalShowEventStartTime] [bit] NULL,
+  [CalShowWeekend] [bit] NULL,
+  [CalCheck] [bit] NULL,
+  [CalMove] [bit] NULL,
+  [CalPrint] [bit] NULL,
+  [ExpandTree] [bit] NULL,
+  [RdlSchemaId] [nvarchar](30) NULL,
+  [CalGanttWMD] [int] NULL,
+  [CalGanttWWD] [int] NULL,
+  [CalGanttWDH] [int] NULL,
+  [CalGanttWHQ] [int] NULL,
+  [CalGanttDZ] [nvarchar](250) NULL,
+  [CalGanttZ] [bit] NULL,
+  [CalMonthNM] [int] NULL,
+  [CalMonthNH] [int] NULL,
+  [CalMonthH] [int] NULL,
+  [CalGanttIDRes] [nvarchar](250) NULL,
+  [CalGanttRes] [nvarchar](4000) NULL,
+  [ShowGridColsConf] [bit] NULL,
+  [UpdateUser] [nvarchar](100) NULL,
+  [CalGanttStart] [nvarchar](250) NULL,
+  [CalGanttEnd] [nvarchar](250) NULL,
+  [CalGanttResTT] [nvarchar](250) NULL,
+  [CalGanttWMW] [int] NULL,
+  [CalGanttDefX] [nvarchar](250) NULL,
+  [CalDAD] [bit] NULL,
+  [CalGanttGroPar] [nvarchar](250) NULL,
+  [CalEvMovePB] [bit] NULL,
+  [CalEvResizePB] [bit] NULL,
+  [CalGanttDG] [int] NULL,
+  [ShowMultifilterButtons] [bit] NULL,
+  [CalMoveSQL] [nvarchar](4000) NULL,
+  [CalAResources] [nvarchar](4000) NULL,
+  [CalAId] [nvarchar](255) NULL,
+  [SQLSelectCal] [nvarchar](4000) NULL,
+  [ClearQuickFilter] [bit] NULL,
+  [ShowGridSummary] [bit] NULL,
+  [ExpandTreeToLevel] [bit] NULL,
+  [ExpandTreeLevel] [int] NULL,
+  [UserID] [nvarchar](30) NULL,
+  [GroupID] [nvarchar](20) NULL,
+  [TurnQuickFilterOn] [bit] NULL,
+  [WithoutPostbackOnQSC] [bit] NULL,
+  [ShowKPIConf] [bit] NULL,
+  [CheckIfDataWhereChanged] [bit] NOT NULL CONSTRAINT [DF_VS_Forms_CheckIfDataWhereChanged] DEFAULT (1),
+  [AllowGridColumnReorder] [bit] NULL,
+  [ShowErrorsInDialogBox] [bit] NULL,
+  [GridEditMode] [nvarchar](10) NULL,
+  [ShowHelp] [nvarchar](30) NULL,
+  [ShowHelpPdf] [nvarchar](30) NULL,
+  [UseContextMenu] [bit] NULL,
+  [TruncGridContent] [bit] NULL,
+  [ShowMultifilterClearButtons] [bit] NULL,
+  CONSTRAINT [PK_VS_Forms] PRIMARY KEY NONCLUSTERED ([FormID])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE TRIGGER [dbo].[VS_Forms_insert_update_trigger] ON [dbo].[VS_Forms]
+AFTER INSERT, UPDATE
+AS  
+BEGIN
+	SET NOCOUNT ON
+	DECLARE @FormID nvarchar(50),
+			@Description nvarchar(255)
+
+	DECLARE insert_cursor_VS_Forms CURSOR FOR 
+		SELECT FormID
+		FROM inserted
+	OPEN insert_cursor_VS_Forms
+	FETCH NEXT FROM insert_cursor_VS_Forms 
+	INTO @FormID
+	WHILE @@FETCH_STATUS = 0
+	BEGIN
+		IF @FormID IN (SELECT FormID FROM deleted)
+			SET @Description = 'ZMIANA'
+		ELSE
+			SET @Description = 'NOWY REKORD'
+
+		UPDATE [dbo].[VS_Forms]
+		SET LastUpdate = getdate(), UpdateUser = suser_sname() + '; ' + host_name(), UpdateInfo = @Description
+		WHERE FormID = @FormID
+
+		FETCH NEXT FROM insert_cursor_VS_Forms 
+		INTO @FormID
+	END
+	CLOSE insert_cursor_VS_Forms	
+	DEALLOCATE insert_cursor_VS_Forms
+END
+GO

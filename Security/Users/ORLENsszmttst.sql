@@ -1,0 +1,3 @@
+﻿CREATE USER [ORLEN\sszmttst]
+  WITHOUT LOGIN
+GO

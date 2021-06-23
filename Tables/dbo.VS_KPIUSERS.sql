@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[VS_KPIUSERS] (
+  [ROWID] [int] IDENTITY,
+  [KPU_KPIID] [int] NOT NULL,
+  [KPU_USERID] [nvarchar](30) NOT NULL,
+  [KPU_ORDER] [int] NULL,
+  [KPU_SHOW_WHEN_ZERO] [bit] NOT NULL DEFAULT (0),
+  [LastUpdate] [datetime] NULL,
+  [UpdateUser] [nvarchar](100) NULL,
+  [UpdateInfo] [nvarchar](255) NULL,
+  [KPU_SHOW_COUNT] [bit] NOT NULL DEFAULT (0),
+  CONSTRAINT [PK_VS_KPIUSERS] PRIMARY KEY NONCLUSTERED ([KPU_KPIID], [KPU_USERID])
+)
+ON [PRIMARY]
+GO

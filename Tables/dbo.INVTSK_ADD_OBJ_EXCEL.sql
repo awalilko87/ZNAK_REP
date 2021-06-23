@@ -1,0 +1,31 @@
+﻿CREATE TABLE [dbo].[INVTSK_ADD_OBJ_EXCEL] (
+  [rowid] [int] IDENTITY,
+  [spid] [int] NOT NULL,
+  [importuser] [nvarchar](256) NULL,
+  [c01] [nvarchar](512) NULL,
+  [c02] [nvarchar](512) NULL,
+  [c03] [nvarchar](512) NULL,
+  [c04] [nvarchar](512) NULL,
+  [c05] [nvarchar](512) NULL,
+  [c06] [nvarchar](512) NULL,
+  [c07] [nvarchar](512) NULL,
+  [c08] [nvarchar](512) NULL,
+  [c09] [nvarchar](512) NULL,
+  [c10] [nvarchar](512) NULL,
+  [c11] [nvarchar](512) NULL,
+  [c12] [nvarchar](512) NULL,
+  [c13] [nvarchar](512) NULL,
+  [c14] [nvarchar](512) NULL,
+  [c15] [nvarchar](512) NULL,
+  [c16] [nvarchar](512) NULL,
+  [c17] [nvarchar](512) NULL,
+  [c18] [nvarchar](512) NULL,
+  [c19] [nvarchar](512) NULL,
+  [c20] [nvarchar](512) NULL,
+  [c21] [nvarchar](512) NULL,
+  [c22] [nvarchar](512) NULL,
+  [c23] [nvarchar](512) NULL,
+  [c24] [nvarchar](512) NULL
+)
+ON [PRIMARY]
+GO

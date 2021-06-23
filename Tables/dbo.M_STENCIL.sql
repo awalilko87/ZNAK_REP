@@ -1,0 +1,16 @@
+﻿CREATE TABLE [dbo].[M_STENCIL] (
+  [STS_ROWGUID] [uniqueidentifier] NOT NULL CONSTRAINT [DF_M_STENCIL_STS_ROWGUID] DEFAULT (newid()),
+  [STL_PARENTID] [int] NULL,
+  [STS_ROWID] [int] NULL,
+  [STS_QTY] [int] NULL,
+  [STL_SINID] [int] NULL,
+  [STL_PARENTDESC] [nvarchar](max) NULL,
+  [STS_DESC] [nvarchar](max) NULL,
+  [STS_CREDATE] [datetime] NULL,
+  [STS_TRIGGER] [tinyint] NULL,
+  [STS_NOTE] [nvarchar](max) NULL,
+  CONSTRAINT [PK_M_STENCIL] PRIMARY KEY CLUSTERED ([STS_ROWGUID])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO

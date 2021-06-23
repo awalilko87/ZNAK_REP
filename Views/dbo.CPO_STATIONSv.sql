@@ -1,0 +1,16 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[CPO_STATIONSv]    
+as    
+select     
+CPS_ROWID     
+,CPS_CPOID     
+,CPS_STNID    
+,STN_CODE    
+,STN_DESC    
+,STN_CITY 
+, STN_TYPE   
+from CPO_STATIONS    
+join STATION on CPS_STNID = STN_CODE
+and STN_TYPE = 'STACJA'
+GO

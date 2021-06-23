@@ -1,0 +1,68 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[ZWFOT12_HISTv]
+as
+SELECT 
+	[OT12_ROWID]
+	,[OT12_KROK]
+	,[OT12_BUKRS]
+	,[OT12_DATA_WYST]
+	,[OT12_DOC_NUM]
+	,[OT12_SAPUSER]
+	,[OT12_IMIE_NAZWISKO]
+	,[OT12_MUZYTKID]
+	,[OT12_MUZYTK]
+	,[OT12_KOSTL]
+	,[OT12_GDLGRP]
+	,[OT12_SERNR]
+	,[OT12_POSNR]
+	,[OT12_HERST]
+	,[OT12_NR_DOW_DOST]
+	,[OT12_DATA_DOST] = convert(datetime,cast([OT12_ROK_DOST]as nvarchar) + '-' + cast( [OT12_MIES_DOST] as nvarchar) + '-01')
+	,[OT12_MIES_DOST]
+	,[OT12_ROK_DOST]
+	,[OT12_PRZEW_OKRES]
+	,[OT12_WOJEWODZTWO]
+	,[OT12_NR_TECHNOL]
+	,[OT12_WART_TOTAL]
+	,[OT12_ANLKL]
+	,[OT12_IF_STATUS]
+	,[OT12_IF_SENTDATE]
+	,[OT12_IF_EQUNR] 
+	,[OT12_ZMT_ROWID]    
+	,[ZMT_OBJ_CODE] --tylko dla konkretnego dokuemntu w SAP
+	,[OT12_PODZ_USL_P]
+	,[OT12_PODZ_USL_S]
+	,[OT12_PODZ_USL_B]
+	,[OT12_PODZ_USL_C]
+	,[OT12_PODZ_USL_U]
+	,[OT12_PODZ_USL_H]
+
+	,[OT_ROWID]
+	,[OT_CODE]
+	,[OT_ORG]
+	,[OT_STATUS]
+	,[OT_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT12')
+	,[OT_TYPE]
+	,[OT_RSTATUS] = 1
+	,[OT12_RSTATUS] = 1
+	,[OT_ID]
+	,[OT_CREUSER]
+	,[OT_CREUSER_DESC] = dbo.UserName(OT_UPDUSER)
+	,[OT_CREDATE]
+	,[OT_UPDUSER]
+	,[OT_UPDUSER_DESC] = dbo.UserName(OT_UPDUSER)
+	,[OT_UPDDATE] 
+	--,[OT_OBJID]
+FROM [dbo].[SAPO_ZWFOT12]
+	join [dbo].[ZWFOT] (nolock) on [ZWFOT].OT_ROWID = [OT12_ZMT_ROWID]
+where 
+	--[OT12_IF_STATUS] = 4 and
+	 [OT_TYPE] = 'SAPO_ZWFOT12'
+  
+   
+
+
+
+
+GO

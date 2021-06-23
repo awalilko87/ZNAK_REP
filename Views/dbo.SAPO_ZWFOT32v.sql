@@ -1,0 +1,31 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[SAPO_ZWFOT32v] as
+ 
+	select 
+		BUKRS = isnull(OT32_BUKRS,''),
+		KROK = isnull(OT32_KROK,0),
+		--WYST_SAPUSER = 'SAP',
+		[WYST_SAPUSER] = (select v.OT_CODE from ZWFOT32v v WHERE v.OT32_ROWID = s.OT32_ROWID),
+		WYST_NAME = OT32_IMIE_NAZWISKO, 
+ 		s.OT32_ROWID,
+		OT32_ZMT_ROWID
+		OT32_IF_STATUS,
+		OT32_IF_SENTDATE, 
+		OT32_IF_EQUNR
+ 
+	from dbo.SAPO_ZWFOT32 s (nolock)
+   
+ --exec dbo.SAPO_OT32
+
+
+
+
+
+
+
+
+
+
+
+GO

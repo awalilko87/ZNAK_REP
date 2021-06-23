@@ -1,0 +1,64 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+
+
+CREATE view [dbo].[ZWFOT32DONv]
+as
+
+select
+	[OT32DON_LP] = ROW_NUMBER() OVER(PARTITION BY [OT32DON_OT32ID] ORDER BY [OT32DON_ANLN1] ASC)
+	,[OT32DON_ROWID] 
+	,[OT32DON_BUKRS]
+	,[OT32DON_ANLN1]
+	,[OT32DON_ANLN1_POSKI]
+	,[OT32DON_ANLN2] 
+	,[OT32DON_ANLN1_DO]
+	,[OT32DON_ANLN1_DO_POSKI]
+	,[OT32DON_ANLN2_DO] 
+	,[OT32DON_ZMT_ROWID]
+	,[OT32DON_OT32ID]
+	
+	--dane pozycji ZMT
+	,[OTD_ROWID]
+	,[OTD_OTID]
+	,[OTD_OBJID]
+	,[OTD_OBJ] = [OBJ_CODE]
+	,[OTD_OBJ_DESC] = [OBJ_DESC]
+	,[OTD_CODE]
+	,[OTD_ORG]
+	,[OTD_STATUS]
+	,[OTD_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT32')
+	,[OTD_TYPE]
+	,[OTD_RSTATUS] = [OT_RSTATUS]
+	,[OTD32_RSTATUS] = [OT_RSTATUS]
+	,[OTD_ID]
+	,[OTD_CREUSER]
+	,[OTD_CREUSER_DESC] = dbo.UserName([OTD_CREUSER])
+	,[OTD_CREDATE]
+	,[OTD_UPDUSER]
+	,[OTD_UPDUSER_DESC] = dbo.UserName(OTD_UPDUSER)
+	,[OTD_UPDDATE] 
+
+	--dane nagłówka
+	,[OT_ID]
+	,[OT_CODE]
+	,[OT_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT32')
+	,[OT32_IF_EQUNR] 
+
+from
+[dbo].[SAPO_ZWFOT32DON] (nolock)
+	join [dbo].[SAPO_ZWFOT32] (nolock) on OT32_ROWID = OT32DON_OT32ID
+	join [dbo].[ZWFOTDON] (nolock) on OTD_ROWID = OT32DON_ZMT_ROWID
+	join [dbo].[ZWFOT] (nolock) on OT_ROWID = OTD_OTID --takie połączenie również prawidłowe: [ZWFOT].OT_ROWID = [OT32_ZMT_ROWID]
+	left join [dbo].[OBJ] (nolock) on OBJ.OBJ_ROWID = [OTD_OBJID]
+where 
+	[OT32_IF_STATUS] <> 4
+	and [OT_TYPE] = 'SAPO_ZWFOT32'
+	and isnull([OTD_NOTUSED], 0) = 0
+
+
+
+
+GO

@@ -1,0 +1,30 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE view [dbo].[INVTSK_NEW_STSv]
+as
+select
+	INO_ROWID,
+	INO_STSID as STSID,
+	isnull(INO_QTY,1) as QTY,
+	STS_CODE as STS,
+	STS_SETTYPE as SETTYPE,
+	--INO_OBJID as [OBJID],
+	ITS_CODE as ITS,
+	PSP_CODE as PSP,
+	INO_CREUSER as CREUSER,
+	ITS_ROWID as ITSID,
+	STNID = isnull(INO_STNID, (select top 1 INS_STNID from INVTSK_STATIONS (nolock) join STATION (nolock) on STN_ROWID = INS_STNID where ITS_ROWID = INS_ITSID order by STN_DESC)),
+	 OBJ_CODE = NULL,    
+	 OBJ_ROWID = NULL,    
+	 OBJ_ASSET = NULL,  
+	 OBJ_ASSETSUB = NULL
+from [INVTSK_NEW_OBJ] (nolock) 
+	 join STENCIL (nolock) on STS_ROWID = INO_STSID
+	 join PSP (nolock) on PSP_ROWID = INO_PSPID
+	 join INVTSK (nolock) on ITS_ROWID = PSP_ITSID 
+
+  
+
+GO

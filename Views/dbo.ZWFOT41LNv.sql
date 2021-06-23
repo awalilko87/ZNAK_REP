@@ -1,0 +1,66 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[ZWFOT41LNv]
+as
+select
+	[OT41LN_LP] = ROW_NUMBER() OVER(PARTITION BY [OT41LN_OT41ID] ORDER BY [OT41LN_ANLN1] ASC)
+  	,[OT41LN_ROWID]
+	,[OT41LN_BUKRS]
+	,[OT41LN_ANLN1]
+	,[OT41LN_ANLN1_POSKI]
+	,[OT41LN_ANLN1_POSKI_DESC] = (select top 1 AST_DESC from dbo.ASSET (nolock) where AST_CODE = [OT41LN_ANLN1_POSKI])
+	,[OT41LN_KOSTL]
+	,[OT41LN_KOSTL_POSKI]
+	,[OT41LN_KOSTL_POSKI_DESC] = (select CCD_DESC from COSTCODEv where CCD_CODE = [OT41LN_KOSTL_POSKI] )
+	,[OT41LN_GDLGRP]
+	,[OT41LN_GDLGRP_POSKI]
+	,[OT41LN_GDLGRP_POSKI_DESC] = (select KL5_DESC from KLASYFIKATOR5 (nolock) where KL5_CODE = [OT41LN_GDLGRP_POSKI] )
+	
+	,[OT41LN_UZASA]
+	,[OT41LN_MENGE]
+	,[OT41LN_ZMT_ROWID]
+	,[OT41LN_OT41ID]
+  
+	--dane pozycji ZMT
+	,[OTL_ROWID]
+	,[OTL_OTID]
+	,[OTL_OBJID]
+	,[OTL_OBJ] = [OBJ_CODE]
+	,[OTL_OBJ_DESC] = [OBJ_DESC]
+	,[OTL_CODE]
+	,[OTL_ORG]
+	,[OTL_STATUS]
+	,[OTL_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT41')
+	,[OTL_TYPE]
+	,[OTL_RSTATUS] = [OT_RSTATUS]
+	,[OTL41_RSTATUS] = [OT_RSTATUS]
+	,[OTL_ID]
+	,[OTL_CREUSER]
+	,[OTL_CREUSER_DESC] = dbo.UserName([OTL_CREUSER])
+	,[OTL_CREDATE]
+	,[OTL_UPDUSER]
+	,[OTL_UPDUSER_DESC] = dbo.UserName(OTL_UPDUSER)
+	,[OTL_UPDDATE] 
+
+	--dane nagłówka
+	,[OT_ID]
+	,[OT_CODE]
+	,[OT_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT41')
+	,[OT41_IF_EQUNR] 
+	,[OTL_NETVALUE] = AST_NETVALUE
+	,[OTL_ACTVALUEDATE] = AST_ACTVALUEDATE
+
+from
+[dbo].[SAPO_ZWFOT41LN] (nolock)
+	join [dbo].[SAPO_ZWFOT41] (nolock) on OT41_ROWID = OT41LN_OT41ID
+	join [dbo].[ZWFOTLN] (nolock) on OTL_ROWID = OT41LN_ZMT_ROWID
+	join [dbo].[ZWFOT] (nolock) on OT_ROWID = OTL_OTID --takie połączenie również prawidłowe: [ZWFOT].OT_ROWID = [OT41_ZMT_ROWID]
+	left join [dbo].[PSP] (nolock) on PSP.PSP_ROWID = [OT_PSPID]
+	left join [dbo].[INVTSK] (nolock) on INVTSK.ITS_ROWID = [OT_ITSID]
+	left join [dbo].[OBJ] (nolock) on OBJ.OBJ_ROWID = [OTL_OBJID]
+	left join [dbo].[ASSET] (nolock) on AST_CODE = [OT41LN_ANLN1_POSKI] and AST_SUBCODE = '0000'
+where 
+	[OT41_IF_STATUS] <> 4
+	and [OT_TYPE] = 'SAPO_ZWFOT41'
+ 	and isnull([OTL_NOTUSED],0) = 0
+GO

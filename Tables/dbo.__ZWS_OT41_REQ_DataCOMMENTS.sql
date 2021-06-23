@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[__ZWS_OT41_REQ_DataCOMMENTS] (
+  [COMMENTS_Id] [int] NULL
+)
+ON [PRIMARY]
+GO

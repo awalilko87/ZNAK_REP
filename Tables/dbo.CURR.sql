@@ -1,0 +1,29 @@
+﻿CREATE TABLE [dbo].[CURR] (
+  [CUR_CODE] [nvarchar](30) NOT NULL,
+  [CUR_ORG] [nvarchar](30) NOT NULL,
+  [CUR_RATE] [numeric](30, 6) NULL,
+  [CUR_DESC] [nvarchar](255) NULL,
+  [CUR_STATUS] [nvarchar](30) NULL,
+  [CUR_DEFAULT] [int] NULL,
+  [CUR_NEWTEXT] [ntext] NULL,
+  [CUR_COMMENT] [ntext] NULL,
+  [CUR_DATE] [datetime] NULL,
+  [CUR_AUTH] [nvarchar](30) NULL,
+  [CUR_REJREASON] [ntext] NULL,
+  [CUR_CREDATE] [datetime] NULL,
+  [CUR_CREUSER] [nvarchar](30) NULL,
+  [CUR_UPDDATE] [datetime] NULL,
+  [CUR_UPDUSER] [nvarchar](30) NULL,
+  [CUR_RSTATUS] [int] NULL,
+  [CUR_NOTUSED] [int] NULL,
+  [CUR_GUID] [nvarchar](50) NULL CONSTRAINT [DF_CURR_CRU_GUID] DEFAULT (newid()),
+  [CUR_ROWID] [int] IDENTITY,
+  CONSTRAINT [PK_CUR] PRIMARY KEY CLUSTERED ([CUR_CODE], [CUR_ORG])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[CURR]
+  ADD CONSTRAINT [FK_CURR_ORG] FOREIGN KEY ([CUR_ORG]) REFERENCES [dbo].[ORG] ([ORG_CODE]) ON UPDATE CASCADE
+GO

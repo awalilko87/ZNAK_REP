@@ -1,0 +1,16 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[SYS_DATASPYGROUPRIGTSINHERIT_Proc](
+@GroupID nvarchar(20)
+)
+WITH ENCRYPTION
+AS
+  DELETE 
+  FROM 
+    VS_DataSpyUserRights 
+  WHERE 
+    UserID in (SELECT UserID from SYUsers WHERE UserGroupID = @GroupID)
+
+
+GO

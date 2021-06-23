@@ -1,0 +1,59 @@
+﻿CREATE TABLE [dbo].[EMPTRAIN] (
+  [ETR_ROWID] [int] IDENTITY,
+  [ETR_EMPID] [int] NOT NULL,
+  [ETR_TRN] [int] NOT NULL,
+  [ETR_CODE] [nvarchar](30) NOT NULL,
+  [ETR_ORG] [nvarchar](30) NOT NULL,
+  [ETR_DESC] [nvarchar](80) NULL,
+  [ETR_NOTE] [ntext] NULL,
+  [ETR_DATE] [datetime] NULL,
+  [ETR_STATUS] [nvarchar](30) NULL,
+  [ETR_TYPE] [nvarchar](30) NULL,
+  [ETR_TYPE2] [nvarchar](30) NULL,
+  [ETR_TYPE3] [nvarchar](30) NULL,
+  [ETR_RSTATUS] [int] NULL CONSTRAINT [DF_EMPTRAIN_ETR_RSTATUS] DEFAULT (0),
+  [ETR_CREUSER] [nvarchar](30) NULL CONSTRAINT [DF_EMPTRAIN_CREUSER] DEFAULT (N'SA'),
+  [ETR_CREDATE] [datetime] NULL CONSTRAINT [DF_EMPTRAIN_DATE] DEFAULT (getdate()),
+  [ETR_UPDUSER] [nvarchar](30) NULL,
+  [ETR_UPDDATE] [datetime] NULL,
+  [ETR_NOTUSED] [int] NULL CONSTRAINT [DF_EMPTRAIN_ETR_NOTUSED] DEFAULT (0),
+  [ETR_ID] [nvarchar](50) NULL CONSTRAINT [DF_EMPTRAIN_ID] DEFAULT (CONVERT([nvarchar](50),newid(),(0))),
+  [ETR_TXT01] [nvarchar](30) NULL,
+  [ETR_TXT02] [nvarchar](30) NULL,
+  [ETR_TXT03] [nvarchar](30) NULL,
+  [ETR_TXT04] [nvarchar](30) NULL,
+  [ETR_TXT05] [nvarchar](30) NULL,
+  [ETR_TXT06] [nvarchar](80) NULL,
+  [ETR_TXT07] [nvarchar](80) NULL,
+  [ETR_TXT08] [nvarchar](255) NULL,
+  [ETR_TXT09] [nvarchar](255) NULL,
+  [ETR_NTX01] [numeric](24, 6) NULL,
+  [ETR_NTX02] [numeric](24, 6) NULL,
+  [ETR_NTX03] [numeric](24, 6) NULL,
+  [ETR_NTX04] [numeric](24, 6) NULL,
+  [ETR_NTX05] [numeric](24, 6) NULL,
+  [ETR_COM01] [ntext] NULL,
+  [ETR_COM02] [ntext] NULL,
+  [ETR_DTX01] [datetime] NULL,
+  [ETR_DTX02] [datetime] NULL,
+  [ETR_DTX03] [datetime] NULL,
+  [ETR_DTX04] [datetime] NULL,
+  [ETR_DTX05] [datetime] NULL,
+  [ETR_ATTACH0] [nvarchar](50) NULL,
+  [ETR_ATTACH1] [nvarchar](50) NULL,
+  [ETR_EXPIRATIONDATE] [datetime] NULL,
+  [ETR_NOTERM] [int] NULL,
+  CONSTRAINT [PK_EMPTRAIN] PRIMARY KEY CLUSTERED ([ETR_EMPID], [ETR_TRN]),
+  CONSTRAINT [UQ_EMPTRAIN] UNIQUE ([ETR_ROWID])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[EMPTRAIN]
+  ADD CONSTRAINT [FK_EMPTRAIN_EMP] FOREIGN KEY ([ETR_EMPID]) REFERENCES [dbo].[EMP] ([EMP_ROWID])
+GO
+
+ALTER TABLE [dbo].[EMPTRAIN]
+  ADD CONSTRAINT [FK_EMPTRAIN_ORG] FOREIGN KEY ([ETR_ORG]) REFERENCES [dbo].[ORG] ([ORG_CODE]) ON UPDATE CASCADE
+GO

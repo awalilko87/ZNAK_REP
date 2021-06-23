@@ -1,0 +1,3 @@
+﻿CREATE USER [zmt]
+  WITHOUT LOGIN
+GO

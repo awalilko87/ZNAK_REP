@@ -1,0 +1,3 @@
+﻿CREATE USER [orlen\ssDbplusMSSQL]
+  WITHOUT LOGIN
+GO

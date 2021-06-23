@@ -1,0 +1,80 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[ZWFOT31LNv]  
+as  
+  
+select  
+ [OT31LN_LP] = ROW_NUMBER() OVER(PARTITION BY [OT31LN_OT31ID] ORDER BY [OT31LN_ANLN1] ASC)  
+      
+ ,[OT31LN_ROWID]   
+ ,[OT31LN_BUKRS]  
+ ,[OT31LN_ANLN1]  
+ ,[OT31LN_ANLN1_POSKI]  
+ ,[OT31LN_ANLN1_POSKI_DESC] = (select top 1 AST_DESC from ASSET (nolock) where AST_CODE = [OT31LN_ANLN1_POSKI] and AST_SUBCODE = '0000')  
+ ,[OT31LN_UZASADNIENIE]  
+ ,[OT31LN_DT_WYDANIA]  
+ ,[OT31LN_MPK_WYDANIA]  
+ ,[OT31LN_MPK_WYDANIA_POSKI]  
+ ,[OT31LN_MPK_WYDANIA_POSKI_DESC] = (select top 1 CCD_DESC from COSTCODE (NOLOCK) where CCD_CODE = [OT31LN_MPK_WYDANIA_POSKI])  
+ ,[OT31LN_GDLGRP]  
+ ,[OT31LN_GDLGRP_POSKI]  
+ ,[OT31LN_GDLGRP_POSKI_DESC] = (select top 1 KL5_DESC from KLASYFIKATOR5 (nolock) where KL5_CODE = [OT31LN_GDLGRP_POSKI])  
+ ,[OT31LN_DT_PRZYJECIA]  
+ ,[OT31LN_MPK_PRZYJECIA]  
+ ,[OT31LN_MPK_PRZYJECIA_POSKI]  
+ ,[OT31LN_MPK_PRZYJECIA_POSKI_DESC] = (select top 1 CCD_DESC from COSTCODE (NOLOCK) where CCD_CODE = [OT31LN_MPK_PRZYJECIA_POSKI])  
+ ,[OT31LN_UZYTKOWNIK]  
+ ,[OT31LN_UZYTKOWNIK_POSKI]  
+ ,[OT31LN_UZYTKOWNIK_POSKI_DESC] = (select top 1 KL5_DESC from KLASYFIKATOR5 (nolock) where KL5_CODE = [OT31LN_UZYTKOWNIK_POSKI])  
+   
+ ,[OT31LN_ZMT_ROWID]  
+ ,[OT31LN_PRACOWNIK]  
+ ,[OT31LN_OT31ID]  
+  
+ --dane pozycji ZMT  
+ ,[OTL_ROWID]  
+ ,[OTL_OTID]  
+ ,[OTL_OBJID]  
+ ,[OTL_OBJ] = [OBJ_CODE]  
+ ,[OTL_OBJ_DESC] = [OBJ_DESC]  
+ ,[OTL_CODE]  
+ ,[OTL_ORG]  
+ ,[OTL_STATUS]  
+ ,[OTL_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT31')  
+ ,[OTL_TYPE]  
+ ,[OTL_RSTATUS] = [OT_RSTATUS]  
+ ,[OTL31_RSTATUS] = [OT_RSTATUS]  
+ ,[OTL_ID]  
+ ,[OTL_CREUSER]  
+ ,[OTL_CREUSER_DESC] = dbo.UserName([OTL_CREUSER])  
+ ,[OTL_CREDATE]  
+ ,[OTL_UPDUSER]  
+ ,[OTL_UPDUSER_DESC] = dbo.UserName(OTL_UPDUSER)  
+ ,[OTL_UPDDATE]   
+  
+ --dane nagłówka  
+ ,[OT_ID]  
+ ,[OT_CODE]  
+ ,[OT_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT31')  
+ ,[OT31_IF_EQUNR]   
+  
+from  
+[dbo].[SAPO_ZWFOT31LN] (nolock)  
+ join [dbo].[SAPO_ZWFOT31] (nolock) on OT31_ROWID = OT31LN_OT31ID  
+ join [dbo].[ZWFOTLN] (nolock) on OTL_ROWID = OT31LN_ZMT_ROWID  
+ join [dbo].[ZWFOT] (nolock) on OT_ROWID = OTL_OTID --takie połączenie również prawidłowe: [ZWFOT].OT_ROWID = [OT31_ZMT_ROWID]  
+ left join [dbo].[ZWFOTOBJ] on  OTO_OTID = OT_ROWID
+
+ left join [dbo].[PSP] (nolock) on PSP.PSP_ROWID = [OT_PSPID]  
+ left join [dbo].[INVTSK] (nolock) on INVTSK.ITS_ROWID = [OT_ITSID]  
+ left join [dbo].[OBJ] (nolock) on OBJ.OBJ_ROWID = [OTO_OBJID]  
+
+where   
+ [OT31_IF_STATUS] <> 4  
+ and [OT_TYPE] = 'SAPO_ZWFOT31'  
+ and isnull([OTL_NOTUSED],0) = 0  
+  
+  
+  
+  
+GO

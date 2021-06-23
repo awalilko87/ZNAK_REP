@@ -1,0 +1,35 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE proc [dbo].[STATION_RENSPON_Save]   
+(  
+@STR_ROWID INT  
+,@STR_STNID INT  
+,@STR_STN_DESC nvarchar(113)
+,@STR_GROUP NVARCHAR(30)  
+,@STR_OBSZAR NVARCHAR(30)  
+,@STR_RESPONID NVARCHAR(30)  
+)  
+as  
+begin   
+
+select @STR_STNID = STN_ROWID from dbo.STATION_FILTERv where STN_FILTER = @STR_STN_DESC
+
+ if @STR_ROWID is null  
+
+  begin     
+	   insert into STATION_RENSPON (STR_STNID,STR_GROUP, STR_OBSZAR, STR_RESPONID)  
+	   values (@STR_STNID ,@STR_GROUP, @STR_OBSZAR, @STR_RESPONID)   
+  end 
+   
+else  
+	 begin   
+		 update STATION_RENSPON  
+		 set STR_STNID = @STR_STNID  
+		 ,STR_GROUP = @STR_GROUP  
+		 ,STR_OBSZAR  = @STR_OBSZAR   
+		 ,STR_RESPONID = @STR_RESPONID    
+		 where STR_ROWID = @STR_ROWID  
+	 end  
+  
+end 
+GO

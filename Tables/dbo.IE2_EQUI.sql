@@ -1,0 +1,55 @@
+﻿CREATE TABLE [dbo].[IE2_EQUI] (
+  [ROWID] [bigint] IDENTITY,
+  [i_DateTime] [datetime] NOT NULL,
+  [Active] [int] NOT NULL,
+  [EQUNR] [nvarchar](30) NOT NULL,
+  [ADDRNUMBER] [nvarchar](30) NOT NULL,
+  [NAME1] [nvarchar](50) NULL,
+  [NAME2] [nvarchar](50) NULL,
+  [NAME_TEXT] [nvarchar](50) NULL,
+  [CITY1] [nvarchar](50) NULL,
+  [POST_CODE1] [nvarchar](50) NULL,
+  [STREET] [nvarchar](50) NULL,
+  [HOUSE_NUM1] [nvarchar](50) NULL,
+  [ADDR_GROUP] [nvarchar](50) NULL,
+  [SORT1] [nvarchar](50) NULL,
+  [SORT2] [nvarchar](50) NULL,
+  [MC_NAME1] [nvarchar](50) NULL,
+  [MC_CITY1] [nvarchar](50) NULL,
+  [MC_STREET] [nvarchar](50) NULL,
+  [ABCKZ] [nvarchar](50) NULL,
+  [EQFNR] [nvarchar](50) NULL,
+  [SWERK] [nvarchar](50) NULL,
+  [STORT] [nvarchar](50) NULL,
+  [MSGRP] [nvarchar](50) NULL,
+  [BEBER] [nvarchar](50) NULL,
+  [KOSTL] [nvarchar](50) NULL,
+  [BUKRS] [nvarchar](50) NULL,
+  [ANLNR] [nvarchar](50) NULL,
+  [ANLUN] [nvarchar](50) NULL,
+  [VKORG] [nvarchar](50) NULL,
+  [VTWEG] [nvarchar](50) NULL,
+  [SPART] [nvarchar](50) NULL,
+  [OWNER] [nvarchar](50) NULL,
+  [DATBI] [nvarchar](50) NULL,
+  [IWERK] [nvarchar](50) NULL,
+  [INGRP] [nvarchar](50) NULL,
+  [KUND1] [nvarchar](50) NULL,
+  [KUND2] [nvarchar](50) NULL,
+  [KUND3] [nvarchar](50) NULL,
+  [SPRAS] [nvarchar](50) NULL,
+  [EQKTX] [nvarchar](50) NULL,
+  [TXASP] [nvarchar](50) NULL,
+  [EQKTU] [nvarchar](50) NULL,
+  [OBJNR] [nvarchar](50) NULL,
+  [POSKI] [nvarchar](50) NULL,
+  [DOC_NEW_INSERTED] [int] NULL,
+  CONSTRAINT [PK_IE2_EQUI] PRIMARY KEY CLUSTERED ([ROWID])
+)
+ON [PRIMARY]
+GO
+
+CREATE INDEX [IX_IE2_EQUI]
+  ON [dbo].[IE2_EQUI] ([i_DateTime], [Active], [EQUNR])
+  ON [PRIMARY]
+GO

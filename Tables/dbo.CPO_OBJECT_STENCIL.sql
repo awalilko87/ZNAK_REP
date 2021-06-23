@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[CPO_OBJECT_STENCIL] (
+  [CPT_ROWID] [int] IDENTITY,
+  [CPT_CPOID] [int] NULL,
+  [CPT_STSID] [int] NULL,
+  [CPT_TYPEID] [int] NULL,
+  [CPT_TYPE2ID] [int] NULL
+)
+ON [PRIMARY]
+GO

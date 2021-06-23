@@ -1,0 +1,11 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[VS_TabFilters_RemoveByID](
+    @FilterID nvarchar(50)
+)
+WITH ENCRYPTION
+AS
+    DELETE FROM VS_TabFilters WHERE FilterID = @FilterID
+GO

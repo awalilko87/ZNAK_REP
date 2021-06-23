@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[IE2_S_ZBIORNIK__RODZAJ_ZB] (
+  [ROWID] [bigint] IDENTITY,
+  [i_DateTime] [datetime] NOT NULL,
+  [ATWRT] [nvarchar](30) NULL,
+  [ATWTB] [nvarchar](30) NULL,
+  [DOC_NEW_INSERTED] [smallint] NULL DEFAULT (1),
+  CONSTRAINT [PK_S_ZBIORNIK__RODZAJ_ZB] PRIMARY KEY NONCLUSTERED ([ROWID])
+)
+ON [PRIMARY]
+GO

@@ -1,0 +1,3 @@
+﻿CREATE USER [ORLEN\chrapkowskit]
+  WITHOUT LOGIN
+GO

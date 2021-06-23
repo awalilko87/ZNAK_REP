@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[__ZWS_OT12_REQSTATUS] (
+  [STATUS_Id] [int] NULL
+)
+ON [PRIMARY]
+GO

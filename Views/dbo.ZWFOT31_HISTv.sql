@@ -1,0 +1,47 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[ZWFOT31_HISTv]
+as
+SELECT 
+
+	[OT31_ROWID]
+	,[OT31_KROK]
+	,[OT31_BUKRS]
+	,[OT31_SAPUSER]
+	,[OT31_IMIE_NAZWISKO]
+	,[OT31_IF_STATUS]
+	,[OT31_IF_SENTDATE] 
+	,[OT31_IF_EQUNR] 
+	,[OT31_ZMT_ROWID]    
+
+	--dane nagłówka
+	,[OT_ROWID]
+	,[OT_PSPID]
+	--,[OT_PSP] = [PSP_CODE]
+	--,[OT_PSP_DESC] = [PSP_DESC]
+	,[OT_ITSID]
+	--,[OT_ITS] = [ITS_CODE]
+	--,[OT_ITS_DESC] = [ITS_DESC]
+	--,[OT_OBJID]
+	--,[OT_OBJ] = [OBJ_CODE]
+	--,[OT_OBJ_DESC] = [OBJ_DESC]
+	,[OT_CODE]
+	,[OT_ORG]
+	,[OT_STATUS]
+	,[OT_STATUS_DESC] = (select STA_DESC from STA (nolock) where STA_CODE = [OT_STATUS] and STA_ENTITY = 'OT31')
+	,[OT_TYPE]
+	,[OT_RSTATUS]
+	,[OT31_RSTATUS] = [OT_RSTATUS]
+	,[OT_ID]
+	,[OT_CREUSER]
+	,[OT_CREUSER_DESC] = dbo.UserName(OT_CREUSER)
+	,[OT_CREDATE]
+	,[OT_UPDUSER]
+	,[OT_UPDUSER_DESC] = dbo.UserName(OT_UPDUSER)
+	,[OT_UPDDATE] 
+FROM [dbo].[SAPO_ZWFOT31] (nolock)
+	join [dbo].[ZWFOT] (nolock) on [ZWFOT].OT_ROWID = [OT31_ZMT_ROWID]
+where 
+	[OT_TYPE] = 'SAPO_ZWFOT31'
+  
+GO

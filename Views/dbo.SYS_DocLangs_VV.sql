@@ -1,0 +1,9 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+CREATE VIEW [dbo].[SYS_DocLangs_VV]
+AS
+SELECT     LangID, LangName
+FROM         dbo.VS_Langs
+
+GO

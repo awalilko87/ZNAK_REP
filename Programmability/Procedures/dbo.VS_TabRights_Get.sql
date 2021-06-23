@@ -1,0 +1,12 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[VS_TabRights_Get]
+WITH ENCRYPTION
+AS
+
+    SELECT
+        UserID, TabGroup
+    FROM VS_TabRights
+GO

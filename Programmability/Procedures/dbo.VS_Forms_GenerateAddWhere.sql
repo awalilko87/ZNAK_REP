@@ -1,0 +1,9 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
+
+CREATE PROCEDURE [dbo].[VS_Forms_GenerateAddWhere]
+WITH ENCRYPTION
+AS
+SELECT 'DepartmentID IN (SELECT DepartmentID FROM GetDeps(@_UserID))'
+GO

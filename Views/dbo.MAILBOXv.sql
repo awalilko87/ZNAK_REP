@@ -1,0 +1,24 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE view [dbo].[MAILBOXv]
+as
+
+SELECT ROWID
+	  ,MAIT_LP = row_number() over (partition by 1 order by MAIB_SENDTIME)
+      ,MAIB_RECEIVER
+      ,MAIB_USER
+      ,MAIB_ORG
+      ,MAIB_SUBJECT
+      ,MAIB_BODY
+      ,MAIB_ENT
+      ,MAIB_TYPE
+      ,MAIB_STATUS
+      ,MAIB_ISSEND
+      ,MAIB_SENDTIME
+      ,MAIB_CREATED
+      ,MAIB_NROFRETRY
+      ,MAIB_NRDOC
+      ,MAIB_MAISID
+      ,MAIB_QUERY
+  FROM MAILBOX
+GO

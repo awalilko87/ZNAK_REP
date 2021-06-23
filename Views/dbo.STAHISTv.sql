@@ -1,0 +1,18 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+create view [dbo].[STAHISTv]
+as
+select
+ ROWID
+,STH_ENTITY
+,STH_ID
+,STH_DATE
+,STH_USER
+,STH_OLD
+,STH_OLD_DESC = o.STA_DESC
+,STH_NEW
+,STH_NEW_DESC = n.STA_DESC
+from STAHIST
+left join dbo.STA o on o.STA_CODE = STH_OLD and o.STA_ENTITY = STH_ENTITY
+left join dbo.STA n on n.STA_CODE = STH_NEW and n.STA_ENTITY = STH_ENTITY
+GO

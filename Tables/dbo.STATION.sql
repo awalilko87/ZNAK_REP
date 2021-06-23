@@ -1,0 +1,38 @@
+﻿CREATE TABLE [dbo].[STATION] (
+  [STN_ROWID] [int] IDENTITY,
+  [STN_CODE] [int] NULL,
+  [STN_ORG] [nvarchar](30) NOT NULL,
+  [STN_CCDID] [int] NOT NULL,
+  [STN_DESC] [nvarchar](80) NULL,
+  [STN_NOTUSED] [int] NULL,
+  [STN_CREDATE] [datetime] NULL,
+  [STN_CREUSER] [nvarchar](30) NULL,
+  [STN_UPDDATE] [datetime] NULL,
+  [STN_UPDUSER] [nvarchar](30) NULL,
+  [STN_STREET] [nvarchar](100) NULL,
+  [STN_CITY] [nvarchar](100) NULL,
+  [STN_STATUS] [nvarchar](30) NULL,
+  [STN_ID] [nvarchar](50) NULL CONSTRAINT [DF__STATION__STN_ID__7C9B25F5] DEFAULT (CONVERT([nvarchar](50),newid(),(0))),
+  [STN_TYPE] [nvarchar](30) NULL,
+  [STN_VOIVODESHIP] [nvarchar](10) NULL,
+  [STN_KL5ID] [int] NOT NULL,
+  [STN_PARENTID] [int] NULL,
+  [STN_LF] [nvarchar](30) NULL,
+  CONSTRAINT [PK_STATION] PRIMARY KEY CLUSTERED ([STN_ROWID])
+)
+ON [PRIMARY]
+GO
+
+CREATE INDEX [STN_CODE]
+  ON [dbo].[STATION] ([STN_CODE])
+  ON [PRIMARY]
+GO
+
+CREATE INDEX [STN_DESC]
+  ON [dbo].[STATION] ([STN_DESC])
+  ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[STATION]
+  ADD CONSTRAINT [FK_STATION_ORG] FOREIGN KEY ([STN_ORG]) REFERENCES [dbo].[ORG] ([ORG_CODE])
+GO

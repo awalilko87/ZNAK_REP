@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[__ZWS_OT42_REQRETURN] (
+  [RETURN_Id] [int] NULL
+)
+ON [PRIMARY]
+GO
