@@ -11,6 +11,8 @@ begin
 	and OT11_ROWID not in (17) -- TEMP RM problematyczny dokument
 	order  by OT11_ROWID asc
 
+	-- repo test
+
 	exec @v_ret = dbo.SAPO_ErrorSend_Proc 'OT11', @id_11
 
 	if @v_ret = 1
