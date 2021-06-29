@@ -25,6 +25,7 @@ begin
 , [TLB_COPYREC_RIGHT] = (select [dbo].[GetBtnRight] (AST_ORG, @p_FID, @p_UserID, N'TLB_COPYREC'))
 , [TLB_PREV_RIGHT] =	(select [dbo].[GetBtnRight] (AST_ORG, @p_FID, @p_UserID, N'TLB_PREV'))
 , [TLB_NEXT_RIGHT] =	(select [dbo].[GetBtnRight] (AST_ORG, @p_FID, @p_UserID, N'TLB_NEXT'))
+, [TEST] = null
 
 	FROM [dbo].[ASSETv] (NOLOCK) 
 	WHERE 1 = 1 and AST_LANGID = @v_LangID and [AST_ID] = @p_ID
